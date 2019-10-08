@@ -14,3 +14,10 @@ window.button = {
 };
 
 export default Button;
+
+// window.button ={
+//   handleClick;(event)=> {
+//     event.preventDefault();
+//     const email
+//   }
+// }
