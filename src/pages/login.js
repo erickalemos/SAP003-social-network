@@ -15,17 +15,28 @@ function buttonLogin() {
     //  var errorMessage = error.message;
     // ...
   });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('oioioioi')
+      // User is signed in.
+      // let displayName = user.displayName;
+      // let email = user.email;
+      // let emailVerified = user.emailVerified;
+      // let photoURL = user.photoURL;
+      // let isAnonymous = user.isAnonymous;
+      // let uid = user.uid;
+      // let providerData = user.providerData;
+      // ...
+    } else {
+      console.log('Mano do céu no login')
+      // User is signed out.
+      // ...
+    }
+  });
 }
 
 
- firebase.auth().onAuthStateChanged(firebaseUser =>{
- if(firebaseUser){
- console.log(firebaseUser);
- }else{
- console.log('not logged in')
- }
 
- });
 
 function Login() {
   const template = `
