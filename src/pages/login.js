@@ -1,41 +1,24 @@
 import Button from '../components/button.js';
 import Input from '../components/inputs.js';
-import Register from '../pages/register.js';
-import ButtonGoogle from '../pages/google.js';
+import ButtonGoogle from './google.js';
 
 
 function buttonLogin() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
-  console.log(email);
-  console.log(password);
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function () {
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (erro){
     //  Handle Errors here.
-    //  var errorCode = error.code;
-    //  var errorMessage = error.message;
-    // ...
-  });
+      //var errorCode = error.code;
+      //var errorMessage = error.message;
+   });
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log('oioioioi')
-      // User is signed in.
-      // let displayName = user.displayName;
-      // let email = user.email;
-      // let emailVerified = user.emailVerified;
-      // let photoURL = user.photoURL;
-      // let isAnonymous = user.isAnonymous;
-      // let uid = user.uid;
-      // let providerData = user.providerData;
-      // ...
+      window.location = '#home';
     } else {
-      console.log('Mano do céu no login')
-      // User is signed out.
-      // ...
+      //console.log('Mano do céu no login, no login!');
     }
   });
 }
-
-
 
 
 function Login() {
@@ -47,54 +30,9 @@ function Login() {
   ${Button({ id: 'logar', title: 'Logar', onClick: buttonLogin })}
   ${Button({ id: 'google', title: 'Google', onClick: ButtonGoogle })}
   </form><br> 
-  <a href = '#register.js'> Cadastre-se </a>
+  <a href = '#register'> Cadastre-se </a>
 `;
   return template;
 }
 
-
-function locationHashChanged() {
-  if (location.hash === '#register.js') {
-    document.querySelector('main').innerHTML= Register();
-  }
-}
-
-window.onhashchange = locationHashChanged;
-
 export default Login;
-
-
-// function enviarLogin(){
-//  const email = document.querySelector('.js-email-input').value;
-//  const password = document.querySelector('.js-password-input').value;
-
-//  }
-// logar.addEventListener('onclick', e => {
-//  firebase.auth().signInWithEmailAndPassword(email, password).catch(function() {});
-//     const email = document.querySelector('.js-email-input');
-//     const password = document.querySelector('.js-password-input');
-//     const auth = firebase.auth();
-
-//    const promise = auth.signInWithEmailAndPassword(email, password);
-//     promise.catch(e => console.log(e.message));
-//    }
-//     )
-
-//    cadastrar.addEventListener('click', event =>{
-//     const email = document.querySelector('.js-email-input');
-//     const password = document.querySelector('.js-password-input');
-//     const auth = firebase.auth();
-
-//     const promise = auth.createUserWithEmailAndPassword(email,pass);
-//     promise.catch(event => console.log(e.message));
-
-//    }
-//    )
-//    firebase.auth().onAuthStateChanged(firebaseUser =>{
-//        if(firebaseUser){
-//            console.log(firebaseUser);
-//         }else{
-//             console.log('not logged in')
-//         }
-
-//    });

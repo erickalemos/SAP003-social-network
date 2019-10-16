@@ -1,15 +1,15 @@
 
 function ButtonGoogle() {
-
-let provider = new firebase.auth.GoogleAuthProvider();
-//google api exemplo
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-firebase.auth().languageCode = 'pt';
-firebase.auth().signInWithPopup(provider).then(function(result) {
+  let provider = new firebase.auth.GoogleAuthProvider();
+  //google api exemplo
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  firebase.auth().languageCode = 'pt';
+  firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     let token = result.credential.accessToken;
     // The signed-in user info.
     let user = result.user;
+    window.location = '#home';
     // ...
   }).catch(function(error) {
     // Handle Errors here.
