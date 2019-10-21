@@ -20,9 +20,8 @@ function buttonLogout() {
   
   const post = {
       text:text,
-      //name: user.displayName,
+      name: firebase.auth().currentUser.displayName,
       likes:0,
-      //user_id: user.uid,
       uid: uid, 
       comments:[]
   }
@@ -41,8 +40,8 @@ function addPost(post){
   const postTemplate = `
   <li class = 'cardPost' >${post.data().uid}
       <div class='post-top-bar'> 
-        <span class="user-post">👩‍💻${post.data().uid}:</span>
-        <span class="text-muted">colocar data e hora</span>
+        <span class="user-post">👩‍💻${post.data().name}:</span>
+        <span class="text-muted"></span>
       </div>
       <div class='forum-bar'>
        ${post.data().text} 
@@ -63,7 +62,6 @@ function addPost(post){
 //printa todos os posts
 function loadPosts(){
   
-  //document.getElementById("posts").innerHTML = "Carregando..."
   postsCollection.get().then(snap=>{
       document.querySelector('.post').innerHTML = ''
       snap.forEach(post=>{
@@ -80,54 +78,24 @@ function deletePost(event){
     })
   document.querySelector(`li[data-id='${id}']`).remove();
   }
+  
   function editPost(event){
-    // const post = {
-    //   text:text,
-    //   likes:0,
-    //   uid: uid, 
-    //   comments:[]}
-    // document.getElementById('postText').value = post.text;
-    //  post = document.getElementById('postText').value;
     const id = event.target.dataset.id;
-    let atualizar = firebase.firestore().collection('posts').doc(id);
-    let updateSingle = atualizar.update({text:''});
-    return atualizar.update({
-      post
-    }).then(function(){
-      app.loadPosts()
+
+  
+    let atualizar = firebase.firestore().collection('posts').doc(id).update({text:'paloma'})
+    .then(function(){
+      app;loadPosts()
     })
-    //let updateSingle = atualizar.update({text:''});
-        
-  }
-  //let atualizar = db.collection('cities').doc('DC');
-
-  // Set the 'capital' field of the city
-  //let updateSingle = atualizar.update({capital: true});
-  //     console.log("edita ai ai")
-  
-  
-
-  // function commentPost(event){
-  //   // const id = event.target.dataset.id;
-  //   // postsCollection = firebase.firestore().collection('posts').doc(id).post.comments{
-  //     `<li>`
-     
-  //   const commentTemplate = ` ${Input({ class: 'js-comment-input', placeholder: 'comente aqui',
-  //    type: 'text' })} <br> `
-   
-  //  `<span id="comentarios">`
-  //   document.getElementById("comentarios").innerHTML =commentTemplate;`
-    // </span>
-    // </li>
-    //` }
-      // .then(function () {
-      //    app.loadPosts()
-      // })
     
-    // }
- 
+   
+   
+    console.log(atualizar)
+               
+  }
 
-
+   //document.querySelector(post.data().uid).setAttribute(text,"")
+  
 function Home() {
   app.loadPosts()
   const template = `
