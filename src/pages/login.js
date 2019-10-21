@@ -13,7 +13,16 @@ function buttonLogin() {
    });
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+
       window.location = '#home';
+//       var user = firebase.auth().currentUser;
+//       var name, email, photoUrl, uid, emailVerified;
+
+// if (user != null) {
+//   name = user.displayName;
+//   email = user.email;
+  
+// }
     } else {
       //console.log('Mano do céu no login, no login!');
     }
