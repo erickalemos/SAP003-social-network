@@ -1,8 +1,7 @@
 import Button from '../components/button.js';
-import Input from '../components/inputs.js';
+
 
 const postsCollection = firebase.firestore().collection('posts')
-
 
 function buttonLogout() {  
   
@@ -18,7 +17,7 @@ function buttonLogout() {
   const text = document.querySelector('.postText').value;
   const uid = firebase.auth().currentUser.uid;
   
-  const post = {
+   const post = {
       text:text,
       name: firebase.auth().currentUser.displayName,
       likes:0,
@@ -43,19 +42,26 @@ function addPost(post){
         <span class="user-post">👩‍💻${post.data().name}:</span>
         <span class="text-muted"></span>
       </div>
-      <div class='forum-bar'>
-       ${post.data().text} 
-      </div>
+      <div class='forum-bar' id='txtdiv' data-id='${post.id}'>
+       ${post.data().text}
+       
+       </div>
+       <span id='controle' style='display:none'>
+       <textarea id='txtarea' class='txtarea' cols='45' rows='3' wrap='ON'>${post.data().text}</textarea>
+       <input type='button' onClick='editPost(1)' value='Salvar'>
+        </span>
+           
       <div class='post-bottom-bar'>
-       ${Button({ class: 'button', title: '👍' })}
+      ${Button({ class: 'button', title: '👍' })}
       ${post.data().likes} 
       ${Button({ class: 'button', title: '💬'})}
       ${Button({ dataId: post.id, class: 'button', title: '✏️', onClick: editPost })} 
       ${Button({ dataId: post.id, class: 'button', title: '❌', onClick: deletePost })}    
-            
+      ${Button({ dataId: post.id, class: 'button-hidden', title: 'Save', onClick: saveEdit})}   
       </div> 
   </li>`
- 
+  let textpost = post.data().text;
+   
   postList.innerHTML+=postTemplate;
 }
 
@@ -70,6 +76,7 @@ function loadPosts(){
   })
 }
 
+
 function deletePost(event){
   const id = event.target.dataset.id;
   postsCollection = firebase.firestore().collection('posts').doc(id).delete()
@@ -79,22 +86,40 @@ function deletePost(event){
   document.querySelector(`li[data-id='${id}']`).remove();
   }
   
-  function editPost(event){
-    const id = event.target.dataset.id;
-
-  
-    let atualizar = firebase.firestore().collection('posts').doc(id).update({text:'paloma'})
-    .then(function(){
-      app;loadPosts()
-    })
+  //edit post 0
+  // function editPost(event){
     
+    // const id = event.target.dataset.id;
    
-   
-    console.log(atualizar)
-               
-  }
+    // let atualizar = firebase.firestore().collection('posts').doc(id).update({text:''})
+    // .then(function(){
+      
+    // })
+  
 
-   //document.querySelector(post.data().uid).setAttribute(text,"")
+    //edit post1
+     function editPost(event) {
+           
+      const id = event.target.dataset.id;
+      const postEdit = document.querySelector(`.forum-bar[data-id='${id}']`);
+      const saveButton = document.querySelector(`.button-hidden[data-id='${id}']`);
+      saveButton.classList.add('show')
+      postEdit.setAttribute('contenteditable','true');
+      postEdit.focus()
+      
+     }
+     function saveEdit(event){
+      const id = event.target.dataset.id;
+      event.target.classList.remove('show');
+      const text= document.querySelector(`.forum-bar[data-id='${id}']`).textContent.trim(); 
+      console.log(text);
+      firebase.firestore().collection('posts').doc(id).update({text})
+      // postEdit.posts.add('post-edit');
+      // console.log('save')
+     }
+      
+     
+
   
 function Home() {
   app.loadPosts()

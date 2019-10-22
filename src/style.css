@@ -41,3 +41,10 @@
   border-width: thin;
   border-color: dimgray
 }
+.button-hidden{
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
