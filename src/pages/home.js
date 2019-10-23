@@ -52,7 +52,7 @@ function addPost(post){
         </span>
            
       <div class='post-bottom-bar'>
-      ${Button({ class: 'button', title: '👍' })}
+      ${Button({ class: 'button', title: 'like' })}
       ${post.data().likes} 
       ${Button({ class: 'button', title: '💬'})}
       ${Button({ dataId: post.id, class: 'button', title: '✏️', onClick: editPost })} 
