@@ -66,204 +66,52 @@ body {
 }
 
 .primary-button {
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 8px;
+  border:none;
+  background-color:  rgb(247, 246, 185);
   cursor: pointer;
-  padding: 5px;
-  text-align: center;
-  display: block;
-  background-color: #292122;
-  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2);
-  color: #c2c0ab; 
 }
-
-.auth {
-  flex-flow: row wrap;
-  justify-content: space-around; 
-}
-
-.auth-button {
-  border: none;
+.button {
+  border:none;
+  background-color:  rgb(247, 246, 185);
   cursor: pointer;
-  padding: 5px;
-  text-align: center;
-  background-color: #fffbad00;
-  font-size: 30px; 
 }
-
-.phrase {
-  padding-top: 20px;
-  text-align: center;
-  display: block;
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: center; 
-}
-
-.access {
-  padding-top: 20px;
-  text-align: center;
-  display: block; 
-}
-
-section {
-  padding-top: 20px;
-  text-align: center;
-  display: block; 
-}
-
-.header-home {
-  background: linear-gradient(to top, #fffbad52, #fad946);
-  text-align: center;
-   
-}
-
-.img-user{  
-  width: 60px;
-  height: 60px;
-  background: url(./img/profile_girl.png) center center/60px no-repeat;
-  margin-left: 10px;
-  margin-right: 10px;
-  border: none;
-  
-}
-
-
-.id-user {
-  text-align: right;
-  font-size: 10px;
-  margin-top: 0;
-  margin-right: 10px;
- 
-}
-
-.post-area {
-  padding-top: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  
-}
-
-.post {
-  margin-top: 10px;
-  font-size: 10px;
-  width: 185px;
-  height: 50px;
-  resize: none;
-  border-radius: 3px;
-  box-shadow: 0 0 0.5em #fce326;
-   
-}
-
-.post-list { 
+.post li{ 
   list-style: none;
-  margin-left: auto;
-  margin-right: auto;
   width: 60%;
-  border: double;  
-  border-color: #fce326;  
+  border: 1px solid rgba(136, 127, 127, 0.952);
+  border-bottom: 5px solid #c0bda9; 
+  border-right: 5px solid #c0bda9; 
   border-radius: 8px; 
   align-items: center;
-  text-align: left;  
-  background-color: #fff;
-   
+  text-align: center;  
+  background: rgb(247, 246, 185);
+}
+.user-post{
+  display:flex;
+  justify-content:flex-start;
+}
+.post-bottom-bar{
+  display:flex;
+  justify-content:flex-end;
 }
 
-.idname {
-  font-weight: bold;
-
+.test-muted{
+  display:flex;
+  justify-content:flex-end;
 }
-
-.border {
-  border-bottom: double #fce326;
+.postText{
+  border-radius: 5px;
 }
-
-.date-hour {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
- 
+.forum-bar{
+  border-top-style: dashed;
+  border-bottom-style: dashed;
+  border-width: thin;
+  border-color: dimgray
 }
-
-.feed {
-  font-size: 12px;
-  background-color: #fffbad00;
-  
-}
-
-.button-home {
-  color: black;
-  float: left;
-  font-size: 12px;
-  background-color: #fffbad00;
-  margin-left: 33px;
-}
-
-
-.button-out {
-  float: right; 
-  margin-right: 10px;
-  font-size: 12px;
-  background-color: #fffbad00;
-  cursor: pointer;
-}
-
-.button-send {
-  display: inline;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  background-color: #fffbad00;
-  cursor: pointer;    
-}
-
-.button-feed {
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: #fffbad00;   
-
-}
-
-.button-save {
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: #fffbad00;  
+.button-hidden{
   visibility: hidden;
 }
 
-.show {  
+.show {
   visibility: visible;
-}
-
-
-@media screen and (min-width: 768px) {
-  .logo {
-    float: left;
-    margin-left: 8%;
-    width: 450px;
-    height: 450px;
-    background: url(./img/logo.png) center center/450px no-repeat; 
-  }
-
-  .js-namefull-input {
-    margin-top: 100px; 
-  }
-
-  .js-email-input {
-    margin-top: 5px; 
-  }
-
-  .js-password-input {
-    margin-top: 5px; 
-  }
-
-  .primary-button {  
-    width: 10%; 
-  }
-  
-  .phrase {
-    font-size: 16px;
-  }
 }

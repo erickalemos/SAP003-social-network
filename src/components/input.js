@@ -1,9 +1,16 @@
-function Input(props) {
-  const input = `
-  <form class="form">
-    <input data-id="${props.dataId}" class="${props.class}" type="${props.type}" " placeholder="${props.placeholder}"/>    
-  </form>
-  `;
-  return input;
-}
-export default Input;
+// function Input(props) {
+//     const template = `
+//       <input="primary-input" type="text"></button>
+//     `;
+  
+//     return template;
+//   }
+  
+//   window.button = {
+//     handleClick: (id) => {
+//       console.log(`Esse é o meu botão ${id}`);
+//       return `Esse é o meu botão ${id}`;
+//     },
+//   };
+  
+//   export default Button;

@@ -1,40 +1,39 @@
-import login from './pages/login.js';
-import register from './pages/register.js';
-import home from './pages/home.js';
-import profile from './pages/profile.js';
+import Login from './pages/login.js';
+import Register from './pages/register.js';
+import Home from './pages/home.js';
 
+// function init() {
+//   document.querySelector('main').innerHTML = Login();
+// }
+// window.addEventListener('load', init);
 
 function locationHashChanged() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    switch (location.hash) {
-
-      case '#register.js': 
-        user ? window.location = '#home.js' : 
-        document.querySelector('main').innerHTML = register();
-        break;
-
-      case '#home.js': 
-        user ? document.querySelector('main').innerHTML = home() :
-        window.location = '#login.js';        
-        break;       
-      
-      case '#login.js': 
-        user ? window.location = '#home.js' : 
-        document.querySelector('main').innerHTML = login();
-        break;
-
-      case '#profile.js': 
-        user ? document.querySelector('main').innerHTML = profile() :
-        window.location = '#login.js';        
-        break;
-
-      default:
-        window.location = '#login.js'
-
-    }
-  })        
+  switch (location.hash) {
+    case '#register':
+  firebase.auth().onAuthStateChanged(function (user) {
+    user ? window.location='#home': document.querySelector('main').innerHTML = Register();
+  });
+  break;
+  case '#home':
+  firebase.auth().onAuthStateChanged(function (user) {
+    user ? document.querySelector('main').innerHTML = Home() : window.location='#login';
+  });
+  break;
+  case'#login':
+    firebase.auth().onAuthStateChanged(function (user) {
+      user ? window.location='#home' : document.querySelector('main').innerHTML = Login();
+    });
+    break;
+    case'#profile':
+    firebase.auth().onAuthStateChanged(function (user) {
+      user ? document.querySelector('main').innerHTML = Profile() : window.location='#login';
+    });
+    break;
+    default:
+      firebase.auth().onAuthStateChanged(function (user) {
+        user ? document.querySelector('main').innerHTML = Home() : window.location='#login';
+      });
+  }
 }
-
-window.addEventListener("load", locationHashChanged, false);
-window.addEventListener("hashchange", locationHashChanged, false);
-
+window.addEventListener('hashchange', locationHashChanged, false);
+window.addEventListener('load', locationHashChanged, false);

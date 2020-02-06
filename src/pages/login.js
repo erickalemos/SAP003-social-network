@@ -1,72 +1,47 @@
 import Button from '../components/button.js';
-import Logo from '../components/logo.js';
-import Input from '../components/input.js';
-import loginGoogle from './google.js';
+import Input from '../components/inputs.js';
+import ButtonGoogle from './google.js';
 
 
-function enviarLogin() {
+function buttonLogin() {
   const email = document.querySelector('.js-email-input').value;
-  const senha = document.querySelector('.js-password-input').value;
+  const password = document.querySelector('.js-password-input').value;
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (erro){
+    //  Handle Errors here.
+      //var errorCode = error.code;
+      //var errorMessage = error.message;
+   });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
 
-  firebase.auth().signInWithEmailAndPassword(email, senha)
-  .then(function () {
-    uid = firebase.auth().currentUser.uid;
+      window.location = '#home';
+//       var user = firebase.auth().currentUser;
+//       var name, email, photoUrl, uid, emailVerified;
 
-    if (uid != null) {
-      
-      window.location = '#home.js';
-     
-    }   
-  }).catch(function(error) {     
-    let errorCode = error.code;
-    if (errorCode === 'auth/user-not-found') {
-      alert('Usuário não encontrado!')
-      window.location = '#home.js';     
-    } else if (errorCode === 'auth/invalid-email') {
-      alert('Digite um e-mail válido!')
-      window.location = '#home.js';      
-    } else if (errorCode === 'auth/wrong-password') {
-      alert('Email ou senha inválido!')
-      window.location = '#home.js';     
+// if (user != null) {
+//   name = user.displayName;
+//   email = user.email;
+  
+// }
+    } else {
+      //console.log('Mano do céu no login, no login!');
     }
   });
-  
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      
-      window.location = '#home.js';
-
-    } else {
-
-    }    
-
-  });
-    
 }
 
-function login() {
-  const template = `   
-    ${Logo({ class: "logo"})}
-    <br>
-    <span class="phrase"> Mantenha na sua vida só o que lhe faz bem,
-    <br>o que "já fez" troque com alguém!</br>
-    <br>
-    <span class= "access">LOGIN</span>
-    <br>
-    ${Input({ class: 'js-email-input', type: 'email', placeholder: 'Email' })}
-    ${Input({ class: 'js-password-input', type: 'password', placeholder: 'Senha' })}    
-    <br>
-    ${Button({ class: "primary-button", onClick: enviarLogin, title: 'ENVIAR',  })}
-    
-    <span class= "access">OU ACESSE COM</span>
-    <section class="auth">   
-    ${Button({ class: "auth-button", onClick: loginGoogle, title: '<i class="fab fa-google"></i>' })}
-    </section>       
-   
-    <section class="register">Não tem uma conta? <a href="#register.js">REGISTRE-SE</a></section>
-  `;
 
+function Login() {
+  const template = `
+  <h1>Login </h1>
+  <form>
+  ${Input({ class: 'js-email-input', placeholder: 'e-mail', type: 'email' })}
+  ${Input({ class: 'js-password-input', placeholder: 'senha', type: 'password' })} <br>  
+  ${Button({ id: 'logar', title: 'Logar', onClick: buttonLogin })}
+  ${Button({ id: 'google', title: 'Google', onClick: ButtonGoogle })}
+  </form><br> 
+  <a href = '#register'> Cadastre-se </a>
+`;
   return template;
 }
 
-export default login;
+export default Login;

@@ -1,70 +1,58 @@
 import Button from '../components/button.js';
-import Logo from '../components/logo.js';
-import Input from '../components/input.js';
+import Input from '../components/inputs.js';
 
 
-function criarLogin() {
-  const name = document.querySelector('.js-namefull-input').value;
+function buttonRegister() {
   const email = document.querySelector('.js-email-input').value;
   const password = document.querySelector('.js-password-input').value;
-  
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then(function () {
-    
-    firebase.auth().currentUser.updateProfile({
+  const name = document.querySelector('.js-name-input').value;
+  console.log(email);
+
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (erro) {
+ 
+    let errorCode = error.code;
+    let errorMessage = error.message;
+
+    if (email.length < 6) {
+      alert('Por favor, entre com um endereço de e-mail válido');
+      return;
+    }
+    if (password.length < 6) {
+      alert('Por favor, digite uma senha com mais de 4 digitos');
+      return;
+    } 
+  });
+ 
+  firebase.auth().onAuthStateChanged(function (user) {
+    user = firebase.auth().currentUser;
+    user.updateProfile({
       displayName: name
     })
-    
-    uid = firebase.auth().currentUser.uid;
-
-    if (uid != null) {     
-      
-      window.location = '#home.js';
-      
-      db.collection('users').add({
-        name: name,
-        email: email,
-        uid: uid    
-        
-      })      
-    }   
-  })  
-  .catch(function (error) {       
-    let errorCode = error.code;    
-
-    if (errorCode === 'auth/weak-password') {
-      alert('A senha precisa ter no mínimo 6 dígitos!')      
-      window.location = '#login.js';
-      window.location = '#register.js';     
-    } else if (errorCode === 'auth/invalid-email') {
-      alert('Digite um e-mail válido!')
-      window.location = '#login.js';
-      window.location = '#register.js';      
-    } else if (errorCode === 'auth/email-already-in-use') {
-      alert('Este e-mail já foi utilizado!')
-      window.location = '#login.js';
-      window.location = '#register.js';      
-    }      
-  });
+    if (user != null) {
+      name = name;
+      email = user.email;
+      senha = user.senha;      
+      window.location = '#home';
+   
+    }else{
+      console.log('Mano do céu no register')
+  }
+})
 }
 
-function register() {
-  const template = `   
-    ${Logo({ class: "logo"})}
-    <br>  
-    ${Input({ class: 'js-namefull-input', type: 'text', placeholder: 'Nome Completo' })}
-    <br>  
-    ${Input({ class: 'js-email-input', type: 'email', placeholder: 'Email' })}
-    <br>
-    ${Input({ class: 'js-password-input', type: 'password', placeholder: 'Senha' })}       
-    <br>
-    ${Button({ class: "primary-button", onClick: criarLogin, title: 'CADASTRAR' })}
-    `;
-
+function Register() {
+  const template = `
+  <h1>Login </h1>
+        <form>
+          ${Input({ class: 'js-email-input', placeholder: 'e-mail', type: 'email' })}
+          ${Input({ class: 'js-password-input', placeholder: 'senha', type: 'password' })}
+          ${Input({ class: 'js-name-input', placeholder: 'Nome', type: 'text' })}<br>
+          ${Button({ id: 'cadastrar', title: 'Cadastrar', onClick: buttonRegister })}
+        </form>
+`;
   return template;
 }
 
-export default register;
-
+export default Register;
 
 
