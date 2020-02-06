@@ -29,7 +29,8 @@ A página permite que o usuário deixe seus post públicos ou privados.
 ## 4. Consideração Gerais
  
 •O aplicativo é um Single Page App.
-•O site foi pensando atarvés do conceito de mobile first
+
+•O site foi pensando atarvés do conceito de mobile first.
 
 ## 5. Desenvolvedoras
 
