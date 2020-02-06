@@ -11,7 +11,6 @@ function loginFacebook() {
   }).catch(function(error) {
     alert('Falha na autenticação!')
     window.location = '#login.js';
-         
   });
   
 };
