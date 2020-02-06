@@ -13,7 +13,6 @@ function loginFacebook() {
     window.location = '#login.js';
   });
   
-  
-};
 
+};
 export default loginFacebook;
