@@ -14,7 +14,7 @@
 
 É uma rede social pensada no consumo conscinte que permite a troca de mensagem entre pessoas que desejam trocar objetos. 
 
-## 2. Laboratrocas
+## 2. Resumo do Projeto
 
 É uma página que permite fazer cadastro ou logar através do google ou facebook e estes dados são enviados para o banco de dados do firebase. Na página inicial é possivel fazer postagens, editar e excluir, também é possivel fazer interação curtindo ou comentando os posts de outros usuários.
 A página permite que o usuário deixe seus post públicos ou privados.
